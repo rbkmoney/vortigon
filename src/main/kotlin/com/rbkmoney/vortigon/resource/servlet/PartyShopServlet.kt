@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebServlet
 
 @WebServlet("/vortigon/v1")
 class PartyShopServlet(
-    private val vortigonServiceHandler: VortigonServiceSrv.Iface?
+    private val vortigonServiceHandler: VortigonServiceSrv.Iface?,
 ) : GenericServlet() {
 
     private lateinit var thriftServlet: Servlet

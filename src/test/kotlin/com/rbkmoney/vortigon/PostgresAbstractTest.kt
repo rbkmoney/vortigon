@@ -5,8 +5,6 @@ import com.rbkmoney.easyway.TestContainers
 import com.rbkmoney.easyway.TestContainersBuilder
 import com.rbkmoney.easyway.TestContainersParameters
 import mu.KotlinLogging
-import org.junit.ClassRule
-import org.junit.runner.Description
 import org.junit.runner.RunWith
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
@@ -17,7 +15,6 @@ import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringRunner
-import org.testcontainers.containers.FailureDetectingExternalResource
 import java.util.function.Consumer
 
 private val log = KotlinLogging.logger {}
