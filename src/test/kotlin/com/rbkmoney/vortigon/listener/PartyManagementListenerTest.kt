@@ -97,9 +97,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            partyDao.findByPartyId(partyId)
-        }, { it != null })
+        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                partyDao.findByPartyId(partyId)
+            },
+            { it != null }
+        )
 
         // Then
         assertNotNull(party)
@@ -131,9 +134,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            partyDao.findByPartyId(partyId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                partyDao.findByPartyId(partyId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(party)
@@ -171,9 +177,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            partyDao.findByPartyId(partyId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                partyDao.findByPartyId(partyId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(party)
@@ -211,9 +220,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            partyDao.findByPartyId(partyId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val party = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                partyDao.findByPartyId(partyId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(party)
@@ -257,9 +269,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val contract = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            contractDao.findByPartyIdAndContractId(partyId, contractId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val contract = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                contractDao.findByPartyIdAndContractId(partyId, contractId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(contract)
@@ -309,12 +324,18 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
-        val partyShop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            partyShopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
+        val partyShop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                partyShopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -351,9 +372,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -393,9 +417,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -438,9 +465,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -475,9 +505,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -517,9 +550,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -558,9 +594,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -601,9 +640,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -638,9 +680,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            shopDao.findByPartyIdAndShopId(partyId, shopId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val shop = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                shopDao.findByPartyIdAndShopId(partyId, shopId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(shop)
@@ -681,9 +726,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val contractor = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            contractorDao.findByPartyIdAndContractorId(partyId, contractId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val contractor = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                contractorDao.findByPartyIdAndContractorId(partyId, contractId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(contractor)
@@ -718,9 +766,12 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
             val record = ProducerRecord<String, SinkEvent>(partyTopic, it.event.sourceId, it)
             producer.send(record)
         }
-        val contractor = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until({
-            contractorDao.findByPartyIdAndContractorId(partyId, contractId)
-        }, { it != null && it.eventId == sequenceId.get() })
+        val contractor = await().atMost(60, TimeUnit.SECONDS).pollDelay(Durations.ONE_SECOND).until(
+            {
+                contractorDao.findByPartyIdAndContractorId(partyId, contractId)
+            },
+            { it != null && it.eventId == sequenceId.get() }
+        )
 
         // Then
         assertNotNull(contractor)
