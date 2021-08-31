@@ -17,13 +17,11 @@ import org.apache.kafka.clients.producer.Producer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
-import org.junit.runner.RunWith
 import org.springframework.boot.test.util.TestPropertyValues
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.junit4.SpringRunner
 import org.testcontainers.containers.KafkaContainer
 import java.time.Duration
 import java.time.Instant
@@ -31,7 +29,6 @@ import java.util.Properties
 
 private val log = KotlinLogging.logger {}
 
-@RunWith(SpringRunner::class)
 @DirtiesContext
 @ContextConfiguration(initializers = [AbstractKafkaIntegrationTest.Initializer::class])
 abstract class AbstractKafkaIntegrationTest : PostgresAbstractTest() {
