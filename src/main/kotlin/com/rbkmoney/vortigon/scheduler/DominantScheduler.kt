@@ -28,5 +28,4 @@ class DominantScheduler(
             log.error(e) { "Dominant pullRange failed" }
         }
     }
-
 }

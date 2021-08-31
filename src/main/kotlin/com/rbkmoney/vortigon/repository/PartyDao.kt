@@ -14,7 +14,6 @@ import org.jooq.Query
 import org.jooq.SelectWhereStep
 import org.jooq.Table
 import org.jooq.impl.DSL
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import javax.sql.DataSource
 

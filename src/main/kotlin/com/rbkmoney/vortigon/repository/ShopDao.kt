@@ -6,7 +6,6 @@ import com.rbkmoney.vortigon.domain.db.Tables.CATEGORY
 import com.rbkmoney.vortigon.domain.db.Tables.PARTY
 import com.rbkmoney.vortigon.domain.db.Tables.SHOP
 import com.rbkmoney.vortigon.domain.db.tables.pojos.Shop
-import org.springframework.jdbc.core.RowMapper
 import org.springframework.stereotype.Repository
 import javax.sql.DataSource
 

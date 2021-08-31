@@ -4,7 +4,6 @@ import com.rbkmoney.dao.impl.AbstractGenericDao
 import com.rbkmoney.mapper.RecordRowMapper
 import com.rbkmoney.vortigon.domain.db.Tables.CONTRACTOR
 import com.rbkmoney.vortigon.domain.db.tables.pojos.Contractor
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import javax.sql.DataSource
 

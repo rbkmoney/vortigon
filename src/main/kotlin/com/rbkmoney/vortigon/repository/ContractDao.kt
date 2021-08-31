@@ -5,7 +5,6 @@ import com.rbkmoney.mapper.RecordRowMapper
 import com.rbkmoney.vortigon.domain.db.Tables.CONTRACT
 import com.rbkmoney.vortigon.domain.db.tables.pojos.Contract
 import org.jooq.Query
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import javax.sql.DataSource
 
