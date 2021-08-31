@@ -147,8 +147,8 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
         assertEquals(sequenceId.get(), party?.eventId)
         assertEquals(blockPartyChange.partyBlocking.blocked.reason, party?.blockedReason)
         assertEquals(
-            blockPartyChange.partyBlocking.blocked.since,
-            TypeUtil.temporalToString(party?.blockedSince)
+            TypeUtil.stringToLocalDateTime(blockPartyChange.partyBlocking.blocked.since).withNano(0),
+            party?.blockedSince?.withNano(0)
         )
     }
 
@@ -190,8 +190,8 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
         assertEquals(sequenceId.get(), party?.eventId)
         assertEquals(revisionPartyChange.revisionChanged.revision, party?.revisionId?.toLong())
         assertEquals(
-            revisionPartyChange.revisionChanged.timestamp,
-            TypeUtil.temporalToString(party?.revisionChangedAt)
+            TypeUtil.stringToLocalDateTime(revisionPartyChange.revisionChanged.timestamp).withNano(0),
+            party?.revisionChangedAt?.withNano(0)
         )
     }
 
@@ -233,8 +233,8 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
         assertEquals(sequenceId.get(), party?.eventId)
         assertTrue(party?.suspension == Suspension.active)
         assertEquals(
-            suspensionPartyChange.partySuspension.active.since,
-            TypeUtil.temporalToString(party?.suspensionActiveSince)
+            TypeUtil.stringToLocalDateTime(suspensionPartyChange.partySuspension.active.since).withNano(0),
+            party?.suspensionActiveSince?.withNano(0)
         )
     }
 
@@ -387,9 +387,9 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
         val accountCreated = shopAccountCreatedPartyChange.claimCreated.status.accepted.effects
             .first { it.isSetShopEffect }.shopEffect.effect.accountCreated
         assertEquals(accountCreated.getCurrency().symbolicCode, shop?.accountCurrencyCode)
-        assertEquals(accountCreated.guarantee, shop?.accountGuarantee)
-        assertEquals(accountCreated.settlement, shop?.accountSettlement)
-        assertEquals(accountCreated.payout, shop?.accountPayout)
+        assertEquals(accountCreated.guarantee, shop?.accountGuarantee?.toLong())
+        assertEquals(accountCreated.settlement, shop?.accountSettlement?.toLong())
+        assertEquals(accountCreated.payout, shop?.accountPayout?.toLong())
     }
 
     @Test
@@ -430,8 +430,8 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
         assertEquals(shopId, shop?.shopId)
         assertEquals(sequenceId.get(), shop?.eventId)
         assertEquals(
-            shopBlockingPartyChange.shopBlocking.blocking.unblocked.since,
-            TypeUtil.temporalToString(shop?.unblockedSince)
+            TypeUtil.stringToLocalDateTime(shopBlockingPartyChange.shopBlocking.blocking.unblocked.since).withNano(0),
+            shop?.unblockedSince?.withNano(0)
         )
         assertEquals(
             shopBlockingPartyChange.shopBlocking.blocking.unblocked.reason,
@@ -694,8 +694,8 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
         assertEquals(sequenceId.get(), shop?.eventId)
         assertTrue(shop?.suspension == Suspension.suspended)
         assertEquals(
-            shopSuspension.shopSuspension.suspension.suspended.since,
-            TypeUtil.temporalToString(shop?.suspensionSuspendedSince)
+            TypeUtil.stringToLocalDateTime(shopSuspension.shopSuspension.suspension.suspended.since).withNano(0),
+            shop?.suspensionSuspendedSince?.withNano(0)
         )
     }
 
@@ -706,7 +706,9 @@ class PartyManagementListenerTest : AbstractKafkaIntegrationTest() {
         val contractId = UUID.randomUUID().toString()
         val sequenceId = AtomicLong()
         val partyCreateChange = PartyEventBuilder.buildPartyCreatedPartyChange(partyId)
-        val partyContractor = PartyEventBuilder.buildPartyContractor()
+        val partyContractor = PartyEventBuilder.buildPartyContractor().apply {
+            id = contractId
+        }
         val partyContractorChange = PartyEventBuilder.buildContractorCreatedPartyChange(partyContractor)
         val events = mutableListOf<SinkEvent>().apply {
             add(
