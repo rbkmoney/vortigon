@@ -17,7 +17,7 @@ class PartyManagementListener(
 
     @KafkaListener(
         autoStartup = "\${kafka.consumer.enabled}",
-        topics = ["\${kafka.topic.initial}"],
+        topics = ["\${kafka.topic.party.initial}"],
         containerFactory = "partyListenerContainerFactory"
     )
     fun handle(

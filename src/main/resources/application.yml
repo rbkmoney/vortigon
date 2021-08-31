@@ -73,9 +73,21 @@ kafka:
     concurrency: 7
     throttling-timeout-ms: 1000
   topic:
-    initial: mg-events-party
-    max-poll-records: 50
+    party:
+      initial: mg-events-party
+      max-poll-records: 50
 
 repository:
   url: http://dominant:8022/v1/domain/repository_client
   network-timeout: 5000
+
+service:
+  dominant:
+    url: http://dominant:8022/v1/domain/repository
+    networkTimeout: 5000
+
+scheduler:
+  enabled: false
+  lockFor: 30m
+  pollingDelay: 3000
+  querySize: 10
