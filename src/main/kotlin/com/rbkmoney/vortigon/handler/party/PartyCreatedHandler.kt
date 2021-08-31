@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component
 private val log = KotlinLogging.logger {}
 
 @Component
-class PartyCreateHandler(
+class PartyCreatedHandler(
     private val partyDao: PartyDao,
 ) : ChangeHandler<PartyChange, MachineEvent> {
 

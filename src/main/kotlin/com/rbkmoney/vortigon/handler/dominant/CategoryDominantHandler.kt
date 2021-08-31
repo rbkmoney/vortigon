@@ -43,7 +43,7 @@ class CategoryDominantHandler(
         }
     }
 
-    override fun isHandle(operation: Operation): Boolean {
+    override fun canHandle(operation: Operation): Boolean {
         val dominantObject = operation.domainObject()
         return dominantObject.isSetCategory
     }

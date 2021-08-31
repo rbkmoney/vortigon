@@ -29,7 +29,7 @@ class DominantService(
             val operations: List<Operation> = entry.value.getOps()
             operations.forEach { operation ->
                 dominantHandlers.forEach { handler ->
-                    if (handler.isHandle(operation)) {
+                    if (handler.canHandle(operation)) {
                         log.info("Process commit with versionId={} operation={} ", entry.key, operation.toJson())
                         handler.handle(operation, entry.key)
                     }
