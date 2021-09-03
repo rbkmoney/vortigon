@@ -18,10 +18,14 @@ class KafkaProperties {
     lateinit var maxPollIntervalMs: String
     lateinit var maxSessionTimeoutMs: String
     val consumer = KafkaConsumerProperties()
-    val topic = KafkaTopicProperties()
+    var topic = KafkaTopicProperties()
+
+    class KafkaTopicProperties {
+        val party = KafkaTopicDetailProperties()
+    }
 
     @Validated
-    class KafkaTopicProperties {
+    class KafkaTopicDetailProperties {
         @field:NotEmpty
         lateinit var initial: String
 

@@ -5,7 +5,6 @@ import com.rbkmoney.easyway.TestContainers
 import com.rbkmoney.easyway.TestContainersBuilder
 import com.rbkmoney.easyway.TestContainersParameters
 import mu.KotlinLogging
-import org.junit.runner.RunWith
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -14,13 +13,11 @@ import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.junit4.SpringRunner
 import java.util.function.Consumer
 
 private val log = KotlinLogging.logger {}
 
 @DirtiesContext
-@RunWith(SpringRunner::class)
 @EnableConfigurationProperties(DataSourceProperties::class)
 @ContextConfiguration(
     classes = [DataSourceAutoConfiguration::class],
@@ -42,7 +39,7 @@ abstract class PostgresAbstractTest {
                 .addPostgresqlTestContainer()
                 .build()
         private val environmentPropertiesConsumer: Consumer<EnvironmentProperties>
-            private get() = Consumer { environmentProperties: EnvironmentProperties ->
+            get() = Consumer { environmentProperties: EnvironmentProperties ->
                 val postgreSQLContainer = postgresql.postgresqlTestContainer.get()
                 environmentProperties.put("spring.datasource.url", postgreSQLContainer.jdbcUrl)
                 environmentProperties.put("spring.datasource.username", postgreSQLContainer.username)

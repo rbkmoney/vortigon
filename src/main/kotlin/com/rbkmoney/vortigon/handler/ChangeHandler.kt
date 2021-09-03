@@ -9,7 +9,7 @@ interface ChangeHandler<in C : TBase<*, *>, P> {
         return changeType?.filter?.match(change) ?: false
     }
 
-    fun handleChange(change: C, parent: P)
+    fun handleChange(change: C, event: P)
 
     val changeType: HandleEventType?
         get() = null
